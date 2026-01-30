@@ -42,10 +42,10 @@ export function PrivacyPolicy() {
                 <p className="mt-2 text-gray-700">
                   E-mail:{' '}
                   <a
-                    href="mailto:kontakt@spinka.pl"
+                    href="mailto:info@spinka.studio"
                     className="text-blue-600 hover:underline"
                   >
-                    kontakt@spinka.pl
+                    info@spinka.studio
                   </a>
                 </p>
               </div>
@@ -199,10 +199,10 @@ export function PrivacyPolicy() {
               <p className="mt-4 text-gray-700">
                 Aby skorzystać z tych praw, skontaktuj się z nami pod adresem:{' '}
                 <a
-                  href="mailto:kontakt@spinka.pl"
+                  href="mailto:info@spinka.studio"
                   className="text-blue-600 hover:underline"
                 >
-                  kontakt@spinka.pl
+                  info@spinka.studio
                 </a>
               </p>
             </section>
@@ -251,10 +251,10 @@ export function PrivacyPolicy() {
                 <p className="text-gray-700">
                   <strong>E-mail:</strong>{' '}
                   <a
-                    href="mailto:kontakt@spinka.pl"
+                    href="mailto:info@spinka.studio"
                     className="text-blue-600 hover:underline"
                   >
-                    kontakt@spinka.pl
+                    info@spinka.studio
                   </a>
                 </p>
                 <p className="mt-2 text-gray-700">

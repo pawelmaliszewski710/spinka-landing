@@ -30,7 +30,7 @@ export function FinalCTA() {
               </a>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <a href="mailto:kontakt@spinka.pl">Porozmawiaj z nami</a>
+              <a href="mailto:info@spinka.studio">Porozmawiaj z nami</a>
             </Button>
           </div>
         </motion.div>
@@ -118,10 +118,10 @@ export function Footer() {
               <div className="mt-3 space-y-2 text-sm text-gray-600">
                 <p>
                   <a
-                    href="mailto:kontakt@spinka.pl"
+                    href="mailto:info@spinka.studio"
                     className="hover:text-gray-900"
                   >
-                    kontakt@spinka.pl
+                    info@spinka.studio
                   </a>
                 </p>
               </div>

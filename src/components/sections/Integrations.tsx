@@ -123,7 +123,7 @@ export function Integrations() {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           Potrzebujesz integracji z innym bankiem lub systemem?{' '}
-          <a href="mailto:kontakt@spinka.pl" className="font-medium text-blue-600 hover:underline">
+          <a href="mailto:info@spinka.studio" className="font-medium text-blue-600 hover:underline">
             Napisz do nas
           </a>
         </motion.p>
