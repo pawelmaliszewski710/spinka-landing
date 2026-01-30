@@ -23,51 +23,82 @@ const plans: Plan[] = [
   {
     id: 'standard',
     title: 'Standard',
-    description: 'Dla małych i średnich firm',
-    monthlyPrice: '140',
-    yearlyPrice: '1400',
+    description: 'Dla freelancerów i małych firm',
+    monthlyPrice: '99',
+    yearlyPrice: '990',
     currency: 'PLN ',
     buttonText: 'Wybierz Standard',
     highlight: true,
-    disabled: true,
-    disabledMessage: 'Uruchomienie produkcyjne w ciągu tygodnia',
+    badge: 'Najpopularniejszy',
+    stripePriceIdMonthly: import.meta.env.VITE_STRIPE_PRICE_STANDARD_MONTHLY,
+    stripePriceIdYearly: import.meta.env.VITE_STRIPE_PRICE_STANDARD_YEARLY,
     features: [
-      { name: 'Bez limitu faktur', icon: 'check' },
+      { name: 'Do 100 faktur miesięcznie', icon: 'check' },
       { name: 'Import faktur z Fakturowni', icon: 'check' },
       { name: 'Import wyciągów bankowych', icon: 'check' },
       { name: 'Automatyczne dopasowanie', icon: 'check' },
-      { name: 'Do 3 firm', icon: 'check' },
+      { name: '1 firma', icon: 'check' },
+      { name: 'Asystent AI', icon: 'check' },
+      { name: 'Priorytetowe wsparcie email', icon: 'check' },
+    ],
+  },
+  {
+    id: 'multi',
+    title: 'Multi-Firma',
+    description: 'Dla właścicieli kilku firm',
+    monthlyPrice: '199',
+    yearlyPrice: '1990',
+    currency: 'PLN ',
+    buttonText: 'Wybierz Multi-Firma',
+    highlight: false,
+    stripePriceIdMonthly: import.meta.env.VITE_STRIPE_PRICE_MULTI_MONTHLY,
+    stripePriceIdYearly: import.meta.env.VITE_STRIPE_PRICE_MULTI_YEARLY,
+    features: [
+      { name: 'Bez limitu faktur', icon: 'check', iconColor: 'text-green-500' },
+      { name: 'Import faktur z Fakturowni', icon: 'check' },
+      { name: 'Import wyciągów bankowych', icon: 'check' },
+      { name: 'Automatyczne dopasowanie', icon: 'check' },
+      { name: 'Do 3 firm', icon: 'check', iconColor: 'text-blue-500' },
       { name: 'Asystent AI', icon: 'check' },
       { name: 'Priorytetowe wsparcie', icon: 'check' },
     ],
   },
   {
-    id: 'premium',
-    title: 'Premium Multi-Firma',
-    description: 'Dla biur rachunkowych i holdingów',
-    monthlyPrice: '200',
-    yearlyPrice: '2000',
+    id: 'enterprise',
+    title: 'Biuro Rachunkowe',
+    description: 'Dla biur rachunkowych i dużych organizacji',
+    monthlyPrice: '499',
+    yearlyPrice: '4990',
     currency: 'PLN ',
-    buttonText: 'Wybierz Premium',
+    buttonText: 'Wybierz Enterprise',
     highlight: false,
-    disabled: true,
-    disabledMessage: 'Uruchomienie produkcyjne w ciągu tygodnia',
+    badge: 'Dla profesjonalistów',
+    stripePriceIdMonthly: import.meta.env.VITE_STRIPE_PRICE_ENTERPRISE_MONTHLY,
+    stripePriceIdYearly: import.meta.env.VITE_STRIPE_PRICE_ENTERPRISE_YEARLY,
     features: [
-      { name: 'Bez limitu faktur', icon: 'check' },
+      { name: 'Bez limitu faktur', icon: 'check', iconColor: 'text-green-500' },
       { name: 'Import faktur z Fakturowni', icon: 'check' },
       { name: 'Import wyciągów bankowych', icon: 'check' },
       { name: 'Automatyczne dopasowanie', icon: 'check' },
-      { name: 'Do 10 firm', icon: 'check' },
-      { name: 'Asystent AI', icon: 'check' },
-      { name: 'Dedykowane wsparcie', icon: 'check' },
+      { name: 'Bez limitu firm', icon: 'check', iconColor: 'text-purple-500' },
+      { name: 'Asystent AI zaawansowany', icon: 'check' },
+      { name: 'Dedykowany opiekun klienta', icon: 'check', iconColor: 'text-amber-500' },
       { name: 'Własne integracje na życzenie', icon: 'check' },
+      { name: 'SLA 99.9% uptime', icon: 'check' },
     ],
   },
 ]
 
 export function Pricing() {
   const handlePlanSelect = (planId: string) => {
-    // Redirect to registration page
+    // For free plan, redirect to registration
+    if (planId === 'free') {
+      window.location.href = appUrl(`/register?plan=${planId}`)
+      return
+    }
+
+    // For paid plans, redirect to registration with plan info
+    // Stripe checkout will be handled after registration in the app
     window.location.href = appUrl(`/register?plan=${planId}`)
   }
 

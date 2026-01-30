@@ -11,6 +11,8 @@ export interface Plan {
   badge?: string;
   disabled?: boolean;
   disabledMessage?: string;
+  stripePriceIdMonthly?: string;
+  stripePriceIdYearly?: string;
   features: {
     name: string;
     icon: string;

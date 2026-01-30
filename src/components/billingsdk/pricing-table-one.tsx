@@ -301,7 +301,7 @@ export function PricingTableOne({
                     htmlFor={`${uniqueId}-monthly`}
                     className="text-muted-foreground peer-data-[state=checked]:text-primary hover:text-foreground flex h-full cursor-pointer items-center justify-center px-2 font-semibold transition-all md:px-7"
                   >
-                    Monthly
+                    Miesięcznie
                   </Label>
                 </div>
                 <div className='has-[button[data-state="checked"]]:bg-background h-full rounded-md transition-all'>
@@ -314,10 +314,10 @@ export function PricingTableOne({
                     htmlFor={`${uniqueId}-annually`}
                     className="text-muted-foreground peer-data-[state=checked]:text-primary hover:text-foreground flex h-full cursor-pointer items-center justify-center gap-1 px-2 font-semibold transition-all md:px-7"
                   >
-                    Yearly
+                    Rocznie
                     {yearlyPriceDiscount > 0 && (
                       <span className="bg-primary/10 text-primary border-primary/20 ml-1 rounded border px-2 py-0.5 text-xs font-medium">
-                        Save {yearlyPriceDiscount}%
+                        -{yearlyPriceDiscount}%
                       </span>
                     )}
                   </Label>
@@ -327,8 +327,11 @@ export function PricingTableOne({
           </div>
 
           <div className={cn(
-            "flex w-full flex-col items-stretch gap-6 md:flex-row md:items-stretch",
-            theme === "classic" && "md:justify-center"
+            "grid w-full gap-4 lg:gap-6",
+            plans.length === 4
+              ? "grid-cols-1 md:grid-cols-2 xl:grid-cols-4"
+              : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+            theme === "classic" && "max-w-7xl mx-auto"
           )}>
             {plans.map((plan, index) => (
               <motion.div
@@ -343,17 +346,18 @@ export function PricingTableOne({
                     theme,
                     highlight: plan.highlight && !plan.disabled,
                   }),
-                  theme === "classic" && "md:max-w-sm md:flex-1",
                   plan.disabled && "opacity-60 grayscale",
                 )}
               >
                 {/* Classic theme highlight effect */}
-                {theme === "classic" && plan.highlight && (
+                {theme === "classic" && (plan.highlight || plan.badge) && (
                   <>
-                    <div className="via-primary absolute -top-px left-1/2 h-px w-32 -translate-x-1/2 bg-gradient-to-r from-transparent to-transparent" />
+                    {plan.highlight && (
+                      <div className="via-primary absolute -top-px left-1/2 h-px w-32 -translate-x-1/2 bg-gradient-to-r from-transparent to-transparent" />
+                    )}
                     <div className="absolute top-4 right-4">
                       <Badge className={highlightBadgeVariants({ theme })}>
-                        Most Popular
+                        {plan.badge || 'Najpopularniejszy'}
                       </Badge>
                     </div>
                   </>
@@ -401,15 +405,14 @@ export function PricingTableOne({
                                   : "underline",
                               )}
                             >
-                              {calculateDiscount(
+                              -{calculateDiscount(
                                 plan.monthlyPrice,
                                 plan.yearlyPrice,
-                              )}
-                              % off
+                              )}%
                             </span>
                           )}
                         </span>
-                        <p className="text-muted-foreground">per year</p>
+                        <p className="text-muted-foreground">rocznie</p>
                       </>
                     ) : (
                       <>
@@ -421,7 +424,7 @@ export function PricingTableOne({
                           )}
                           {plan.monthlyPrice}
                         </span>
-                        <p className="text-muted-foreground">per month</p>
+                        <p className="text-muted-foreground">miesięcznie</p>
                       </>
                     )}
                   </motion.div>
