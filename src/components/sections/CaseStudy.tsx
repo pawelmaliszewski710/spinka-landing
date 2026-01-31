@@ -59,7 +59,7 @@ export function CaseStudy() {
             Sprawdzone w praktyce
           </div>
           <h2 className="text-3xl font-bold text-gray-900 lg:text-4xl">
-            Co mówią nasi klienci
+            Co mówią nasi Klienci
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
             Zobacz jak Spinka pomaga realnym firmom oszczędzać czas i eliminować błędy

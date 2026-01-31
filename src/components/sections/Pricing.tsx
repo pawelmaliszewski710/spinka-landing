@@ -82,7 +82,7 @@ const plans: Plan[] = [
       { name: 'Automatyczne dopasowanie', icon: 'check' },
       { name: 'Bez limitu firm', icon: 'check', iconColor: 'text-purple-500' },
       { name: 'Asystent AI zaawansowany', icon: 'check' },
-      { name: 'Dedykowany opiekun klienta', icon: 'check', iconColor: 'text-amber-500' },
+      { name: 'Dedykowany opiekun Klienta', icon: 'check', iconColor: 'text-amber-500' },
       { name: 'Własne integracje na życzenie', icon: 'check' },
       { name: 'SLA 99.9% uptime', icon: 'check' },
     ],

@@ -39,8 +39,13 @@ export function Stats() {
           <h2 className="text-2xl font-bold text-gray-900 lg:text-3xl">
             Z 5 dni do 2 godzin
           </h2>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
             Tyle czasu oszczędzasz miesięcznie na dopasowywaniu płatności
+          </p>
+          <p className="mt-4 text-sm text-gray-500 max-w-3xl mx-auto">
+            Dla firm wystawiających regularnie faktury swoim Klientom (min. 10 miesięcznie),
+            które tracą czas na ręczną weryfikację płatności lub których obecny system
+            fakturowy ma słabą skuteczność automatycznych dopasowań.
           </p>
         </motion.div>
 
