@@ -1,49 +1,93 @@
 import { motion } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
+import { useState } from 'react'
 
-const integrations = [
+interface Integration {
+  name: string
+  type: string
+  available: boolean
+  logo: string | null
+  bgDark?: boolean
+  fallback: string
+}
+
+function IntegrationLogo({ integration }: { integration: Integration }) {
+  const [imageError, setImageError] = useState(false)
+
+  if (!integration.logo || imageError) {
+    return (
+      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gray-100 text-gray-500 text-xs font-bold">
+        {integration.fallback}
+      </div>
+    )
+  }
+
+  return (
+    <div
+      className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg overflow-hidden ${
+        integration.bgDark ? 'bg-gray-900 p-1.5' : 'bg-gray-50'
+      }`}
+    >
+      <img
+        src={integration.logo}
+        alt={integration.name}
+        className="h-full w-full object-contain"
+        onError={() => setImageError(true)}
+      />
+    </div>
+  )
+}
+
+const integrations: Integration[] = [
   {
     name: 'Fakturownia',
     type: 'Faktury',
     available: true,
     logo: '/integracje/fakturownia-logo.svg',
+    fallback: 'FV',
   },
   {
     name: 'mBank',
     type: 'Bank',
     available: true,
     logo: '/integracje/mbank.png',
+    fallback: 'mB',
   },
   {
     name: 'mBank Company',
     type: 'Bank korporacyjny',
     available: true,
     logo: '/integracje/mbankcompany-logo.svg',
+    fallback: 'mBC',
   },
   {
     name: 'Pekao SA',
     type: 'Bank',
     available: true,
-    logo: '/integracje/logo-white pekao SA.svg',
+    logo: '/integracje/pekao-logo.svg',
     bgDark: true,
+    fallback: 'PKO',
   },
   {
     name: 'CSV',
     type: 'Format uniwersalny',
     available: true,
     logo: '/integracje/csv.jpg',
+    fallback: 'CSV',
   },
   {
     name: 'MT940',
     type: 'Format bankowy',
     available: true,
     logo: '/integracje/mt940.jpg',
+    fallback: '940',
   },
   {
     name: 'Inne banki',
     type: 'Na życzenie',
     available: false,
     logo: null,
+    fallback: '?',
   },
 ]
 
@@ -78,35 +122,19 @@ export function Integrations() {
               transition={{ duration: 0.3, delay: index * 0.05 }}
             >
               <div
-                className={`flex items-center gap-4 rounded-xl border px-5 py-4 min-w-[200px] ${
+                className={`flex items-center gap-3 rounded-xl border px-4 py-3 ${
                   integration.available
                     ? 'border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow'
                     : 'border-dashed border-gray-300 bg-gray-50'
                 }`}
               >
-                {integration.logo ? (
-                  <div
-                    className={`flex h-12 w-12 items-center justify-center rounded-lg overflow-hidden ${
-                      integration.bgDark ? 'bg-gray-900 p-2' : 'bg-white'
-                    }`}
-                  >
-                    <img
-                      src={integration.logo}
-                      alt={integration.name}
-                      className="max-h-10 max-w-10 object-contain"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-200 text-gray-400 text-lg font-bold">
-                    ?
-                  </div>
-                )}
-                <div>
-                  <div className="font-medium text-gray-900">{integration.name}</div>
-                  <div className="text-sm text-gray-500">{integration.type}</div>
+                <IntegrationLogo integration={integration} />
+                <div className="min-w-0">
+                  <div className="font-medium text-gray-900 whitespace-nowrap">{integration.name}</div>
+                  <div className="text-sm text-gray-500 whitespace-nowrap">{integration.type}</div>
                 </div>
                 {!integration.available && (
-                  <Badge variant="secondary" className="ml-2">
+                  <Badge variant="secondary" className="ml-2 flex-shrink-0">
                     Wkrótce
                   </Badge>
                 )}
