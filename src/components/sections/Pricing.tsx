@@ -91,15 +91,19 @@ const plans: Plan[] = [
 
 export function Pricing() {
   const handlePlanSelect = (planId: string) => {
-    // For free plan, redirect to registration
-    if (planId === 'free') {
+    // Find the plan to get the price ID
+    const plan = plans.find((p) => p.id === planId)
+
+    // For free plan, redirect to registration without price
+    if (planId === 'free' || !plan?.stripePriceIdMonthly) {
       window.location.href = appUrl(`/register?plan=${planId}`)
       return
     }
 
-    // For paid plans, redirect to registration with plan info
-    // Stripe checkout will be handled after registration in the app
-    window.location.href = appUrl(`/register?plan=${planId}`)
+    // For paid plans, redirect to registration with plan and price info
+    // Stripe checkout will be triggered after registration
+    const priceId = plan.stripePriceIdMonthly
+    window.location.href = appUrl(`/register?plan=${planId}&price=${priceId}`)
   }
 
   return (
