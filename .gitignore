@@ -42,3 +42,7 @@ referencje
 Screenshots
 Sprawdzone
 !public/sprawdzone/
+
+# Claude Code / MCP configuration (SECURITY: contains API tokens)
+.mcp.json
+.claude/
